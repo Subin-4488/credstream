@@ -45,3 +45,6 @@ app.*.map.json
 
 #keys
 /lib/keys
+
+#other data
+/asset
