@@ -12,7 +12,7 @@ class EveryoneWatching extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: ListView.separated(
           itemBuilder: (context, index) {
-            return ListItem();
+            return const ListItem();
           },
           separatorBuilder: ((context, index) {
             return kHeight20;
@@ -39,7 +39,7 @@ class ListItem extends StatelessWidget {
           'Landing the lead in the school musical is adream come true for jodi, until the pressure sends her confidence - and her relationship - into tailspain',
           style: bodyStyle,
         ),
-        VideoWidget(),
+        const VideoWidget(),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: const [
@@ -80,7 +80,7 @@ class VideoWidget extends StatelessWidget {
             child: Image.network(
                 fit: BoxFit.cover,
                 'https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/gQxaF79LUTtopdYHsuS8lUr9rvF.jpg')),
-        IconButton(onPressed: (() {}), icon: Icon(Icons.volume_off))
+        IconButton(onPressed: (() {}), icon: const Icon(Icons.volume_off))
       ],
     );
   }

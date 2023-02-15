@@ -33,8 +33,6 @@ class _DummyState extends State<Dummy> {
     _controller = VideoPlayerController.asset(video)
       ..initialize().then((value) {
         setState(() {
-          print(_controller.value.size.height);
-          print(_controller.value.size.width);
           topMAX = (_controller.value.size.height - 100).toInt();
           leftMAX = (_controller.value.size.width - 100).toInt();
         });
@@ -75,7 +73,6 @@ class _DummyState extends State<Dummy> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
           child: Center(
