@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
 import 'package:credstream/screens/fast_laughs/widgets/circle_action_widget.dart';
 
@@ -44,13 +43,13 @@ class Date extends StatelessWidget {
           children: [
             Text(
               'FEB',
-              style: bodyStyle.copyWith(color: kGrey400),
               textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
-            const Text(
+            Text(
               '12',
-              style: headingStyle,
               textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ));
@@ -74,20 +73,21 @@ class Content extends StatelessWidget {
         ),
         kHeight,
         Row(
-          children: const [
+          children:  [
             Expanded(
                 child: Text(
               'TALLGIRL 2',
-              style: headingStyle,
+              style: Theme.of(context).textTheme.bodyLarge,
             )),
             kWidth,
-            CircleActionWidget(
+            const CircleActionWidget(
               size: 12,
               icondata: Icons.notifications,
               string: 'Remind Me',
               color: Colors.grey,
             ),
-            CircleActionWidget(
+            const SizedBox(width: 5,),
+            const CircleActionWidget(
               size: 12,
               icondata: Icons.warning,
               string: 'Info',
@@ -95,18 +95,18 @@ class Content extends StatelessWidget {
             )
           ],
         ),
-        const Text(
+         Text(
           'Coming on Friday',
-          style: bodyStyle,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         kHeight,
-        Text(
+         Text(
           'Tall Girl 2',
-          style: headingStyle.copyWith(fontSize: 19),
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
-        const Text(
+         Text(
           'Landing the lead in the school musical is a dream come true for jodi, until the pressure sends her confidence - and her relationship - into tailspain',
-          style: bodyStyle,
+          style: Theme.of(context).textTheme.bodyLarge,
         )
       ],
     );

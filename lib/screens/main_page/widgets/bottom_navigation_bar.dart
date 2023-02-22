@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:credstream/core/colors.dart';
 
 ValueNotifier<int> indexNotifier = ValueNotifier(0);
 
@@ -13,16 +12,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
       builder: (context, value, child) {
         return BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            backgroundColor: kBlack,
             showUnselectedLabels: true,
             currentIndex: indexNotifier.value,
             onTap: ((value) {
               indexNotifier.value = value;
             }),
-            selectedIconTheme: const IconThemeData(color: kWhite),
-            selectedItemColor: kWhite,
-            unselectedItemColor: Colors.grey,
-            unselectedIconTheme: const IconThemeData(color: Colors.grey),
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
               BottomNavigationBarItem(

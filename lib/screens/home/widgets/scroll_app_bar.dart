@@ -1,5 +1,5 @@
+import 'package:credstream/core/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:credstream/core/constants.dart';
 import 'package:credstream/screens/home/screen_home.dart';
 
 class ScrollAppBar extends StatelessWidget {
@@ -12,11 +12,16 @@ class ScrollAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
     return ValueListenableBuilder(
       valueListenable: hometitleNotifier,
       builder: (context, value, child) {
         return AnimatedContainer(
-          color: Colors.black45,
+          decoration: BoxDecoration(
+              color: brightness == Brightness.dark
+                  ? kFloatingContainerDark
+                  : kFloatingContainerLight,
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           width: size.width,
           alignment: Alignment.center,
           height: animatedContainerheight,
@@ -27,11 +32,19 @@ class ScrollAppBar extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    Image.network(
-                        height: 40,
-                        'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Netflix-new-icon.png/900px-Netflix-new-icon.png?20160722094621'),
+                    Image.asset(brightness == Brightness.light
+                        ? 'asset/images/logo/CredStream-logos_black1.png'
+                        : 'asset/images/logo/CredStream-logos_white1.png'),
+                    Text(
+                      'CredStream',
+                      style: Theme.of(context).textTheme.displayLarge!.copyWith(
+              color: kBlue, fontSize: 20),
+                    ),
                     const Spacer(),
                     const Icon(Icons.cast),
+                    const SizedBox(
+                      width: 5,
+                    )
                   ],
                 ),
               ),
@@ -62,11 +75,13 @@ class TItleTextButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
     return TextButton(
         onPressed: (() {}),
         child: Text(
           text,
-          style: bodyStyle,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: brightness == Brightness.dark ? kWhite : kBlack),
         ));
   }
 }

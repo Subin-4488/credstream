@@ -13,6 +13,7 @@ class BackgroundCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
     return Container(
       height: size.height * .75,
       decoration: const BoxDecoration(
@@ -26,7 +27,9 @@ class BackgroundCard extends StatelessWidget {
             right: 0,
             child: Container(
               height: size.height * .09,
-              color: Colors.black45,
+              color: brightness == Brightness.dark
+                  ? kFloatingContainerDark
+                  : kFloatingContainerLight,
             ),
           ),
           Padding(
@@ -64,6 +67,7 @@ class HomeCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -73,10 +77,12 @@ class HomeCustomButton extends StatelessWidget {
               children: [
                 Icon(
                   iconData,
-                  color: kWhite,
                 ),
-                Text(text,
-                    style: headingStyle.copyWith(color: kWhite, fontSize: 15))
+                Text(
+                  text,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: brightness == Brightness.dark ? kWhite : kBlack),
+                )
               ],
             ))
       ],
@@ -94,20 +100,20 @@ class PlayButton extends StatelessWidget {
     return TextButton.icon(
       onPressed: (() {
         Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
-          return Dummy();
+          return const Dummy();
         })));
       }),
       icon: const Icon(
         Icons.play_arrow,
         size: 25,
-        color: kBlack,
       ),
       label: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5.0),
-        child: Text(
-          'Play',
-          style: headingStyle.copyWith(color: kBlack, fontSize: 15),
-        ),
+        child: Text('Play',
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(color: kRed, fontFamily: 'Unbounded')),
       ),
       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(kWhite)),
     );

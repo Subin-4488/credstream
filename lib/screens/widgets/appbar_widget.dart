@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:credstream/core/constants.dart';
 
 class AppBarWidget extends StatelessWidget {
   final String title;
@@ -12,7 +11,7 @@ class AppBarWidget extends StatelessWidget {
         Expanded(
             child: Text(
           title,
-          style: headingStyle,
+          style: Theme.of(context).textTheme.displayLarge, 
         )),
         const Icon(Icons.cast),
       ],

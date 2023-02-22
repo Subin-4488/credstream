@@ -9,11 +9,14 @@ class ScreenNewandhot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        AppBarWidget(title: 'New & Hot'),
-        Expanded(child: CustomTab()),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        children: const [
+          AppBarWidget(title: 'New & Hot'),
+          Expanded(child: CustomTab()),
+        ],
+      ),
     );
   }
 }
@@ -23,6 +26,9 @@ class CustomTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool flag = MediaQuery.of(context).platformBrightness == Brightness.dark
+        ? true
+        : false;
     return DefaultTabController(
         length: 2,
         initialIndex: 0,
@@ -33,10 +39,10 @@ class CustomTab extends StatelessWidget {
               isScrollable: false,
               splashBorderRadius: BorderRadius.circular(25),
               splashFactory: InkSplash.splashFactory,
-              unselectedLabelColor: kWhite,
-              labelColor: kBlack,
+              unselectedLabelColor: flag ? kWhite : kBlack,
+              labelColor: flag ? kBlack : kWhite,
               indicator: BoxDecoration(
-                  color: kWhite, borderRadius: BorderRadius.circular(25)),
+                  color: kBlue, borderRadius: BorderRadius.circular(25)),
               tabs: const [
                 Tab(
                   text: '🍿 Coming Soon',

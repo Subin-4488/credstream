@@ -1,3 +1,4 @@
+import 'package:credstream/core/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/core/constants.dart';
@@ -14,16 +15,20 @@ class ScreenSearch extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CupertinoSearchTextField(
+            placeholderStyle: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(fontFamily: 'Nunito'),
             padding: const EdgeInsets.all(10),
-            backgroundColor: Colors.grey[800],
-            style: TextStyle(color: Colors.grey[300]),
-            prefixIcon: Icon(
+            backgroundColor: kBlue, 
+            style: Theme.of(context).textTheme.bodyLarge,
+            prefixIcon: const Icon(
               Icons.search,
-              color: Colors.grey[300],
+              color: kBlack,
             ),
-            suffixIcon: Icon(
+            suffixIcon: const Icon(
               Icons.cancel,
-              color: Colors.grey[300],
+              color: kRed,
             ),
           ),
           kHeight,

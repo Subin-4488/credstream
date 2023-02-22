@@ -11,7 +11,7 @@ class Dummy extends StatefulWidget {
   State<Dummy> createState() => _DummyState();
 }
 
-class _DummyState extends State<Dummy> {
+class _DummyState extends State<Dummy> with ChangeNotifier {
   // String video =
   //     'https://joy1.videvo.net/videvo_files/video/free/2019-09/large_watermarked/190828_27_SuperTrees_HD_17_preview.mp4';
   String video = 'asset/videos/result.mkv';

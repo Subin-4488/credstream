@@ -24,7 +24,7 @@ class CircleActionWidget extends StatelessWidget {
         ),
         Text(
           string,
-          style: bodyStyle.copyWith(color: color, fontSize: size),
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
       ],
     );

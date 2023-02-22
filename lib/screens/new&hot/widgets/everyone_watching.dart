@@ -32,12 +32,12 @@ class ListItem extends StatelessWidget {
       children: [
         Text(
           'Tall Girl 2',
-          style: headingStyle.copyWith(fontSize: 19),
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         kHeight,
-        const Text(
+         Text(
           'Landing the lead in the school musical is adream come true for jodi, until the pressure sends her confidence - and her relationship - into tailspain',
-          style: bodyStyle,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         const VideoWidget(),
         Row(

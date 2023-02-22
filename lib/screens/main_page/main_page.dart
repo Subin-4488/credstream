@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:credstream/core/colors.dart';
 import 'package:credstream/screens/downloads/screen_downloads.dart';
 import 'package:credstream/screens/fast_laughs/screen_fastlaughs.dart';
 import 'package:credstream/screens/home/screen_home.dart';
@@ -9,7 +8,7 @@ import 'package:credstream/screens/search/screen_search.dart';
 
 class MainPage extends StatelessWidget {
   final _pages = [
-    const ScreenHome(),
+    ScreenHome(),
     const ScreenNewandhot(),
     ScreenFastlaughs(),
     const ScreenSearch(),
@@ -21,7 +20,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
+      // backgroundColor: bgColor,
       body: SafeArea(
         child: ValueListenableBuilder(
             valueListenable: indexNotifier,

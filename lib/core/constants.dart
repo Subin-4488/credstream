@@ -16,17 +16,6 @@ const kWidth20 = SizedBox(
   width: 20, 
 );
 
-const headingStyle = TextStyle(
-  color: Colors.white,
-  fontFamily: 'Unbounded',
-  fontSize: 25,
-);
-const bodyStyle = TextStyle(
-    color: Colors.white,
-    fontFamily: 'Nunito',
-    fontSize: 16,
-    fontWeight: FontWeight.w700);
-
 final borderRadius = BorderRadius.circular(10);
 
 const mainImage =

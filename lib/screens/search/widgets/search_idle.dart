@@ -43,10 +43,9 @@ class SearchItems extends StatelessWidget {
                         image: NetworkImage(images[0]), fit: BoxFit.cover)),
               ),
               kWidth,
-              Expanded(
+              const Expanded(
                   child: Text(
                 'Titanic',
-                style: bodyStyle.copyWith(fontSize: 18),
               )),
               const CircleAvatar(
                   backgroundColor: kWhite,

@@ -10,12 +10,12 @@ import 'package:credstream/screens/widgets/main_title.dart';
 final ValueNotifier<bool> hometitleNotifier = ValueNotifier(true);
 double animatedContainerheight = -1;
 
-class ScreenHome extends StatelessWidget {
-  const ScreenHome({super.key});
+class ScreenHome extends StatelessWidget with ChangeNotifier {
+  ScreenHome({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     if (animatedContainerheight == -1) {
       animatedContainerheight = size.height * .114;
     }
@@ -38,6 +38,7 @@ class ScreenHome extends StatelessWidget {
             ListView(
               children: [
                 BackgroundCard(size: size),
+                const SizedBox(height: 2,),
                 const HomeTitleContent(title: 'Released in the past year'),
                 const HomeTitleContent(title: 'Trending Now'),
                 const NumberedHomeTitleContent(),
@@ -76,10 +77,7 @@ class NumberedHomeTitleContent extends StatelessWidget {
                           child: const MainCard()),
                       Text(
                         '${index + 1}',
-                        style: headingStyle.copyWith(
-                            fontSize: 110,
-                            height: 0.1,
-                            color: const Color.fromARGB(255, 154, 154, 154)),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 40), 
                       ),
                     ])),
           ),

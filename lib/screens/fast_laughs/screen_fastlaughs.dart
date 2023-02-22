@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/core/colors.dart';
-import 'package:credstream/core/constants.dart';
 import 'package:credstream/screens/downloads/screen_downloads.dart';
 import 'package:credstream/screens/fast_laughs/widgets/circle_action_widget.dart';
 

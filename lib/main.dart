@@ -1,10 +1,9 @@
-import 'package:credstream/dummy.dart';
+import 'package:credstream/core/apptheme.dart';
+import 'package:credstream/screens/auth/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:credstream/core/constants.dart';
 import 'package:credstream/screens/main_page/main_page.dart';
 
-void 
-main() {
+void main() {
   runApp(const Main());
 }
 
@@ -14,12 +13,14 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          iconTheme: const IconThemeData(color: Colors.white),
-          textTheme:
-              const TextTheme(headline1: headingStyle, bodyText1: bodyStyle)),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      routes: {
+        "signup": (context) => const Signup(),
+        "mainPage": (context) => MainPage()
+      },
+      initialRoute: "mainPage",
     );
   }
 }

@@ -57,7 +57,6 @@ class Section1 extends StatelessWidget {
         kWidth,
         Text(
           'Smart Downloads',
-          style: bodyStyle,
         ),
       ],
     );
@@ -74,16 +73,15 @@ class Section2 extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        Text(
+         Text(
           'Introducing Downloads for You',
-          style: headingStyle.copyWith(fontSize: 18),
           textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.displayLarge,
         ),
         kHeight,
         Text(
             'We\'ll download a personalized selection of\nmovies and shows for you, so there\'s\nalways something to watch on your\ndevice.',
-            textAlign: TextAlign.center,
-            style: bodyStyle.copyWith(color: kGrey400)),
+            textAlign: TextAlign.center,style: Theme.of(context).textTheme.bodyLarge,),
         SizedBox(
           height: size.width * .75,
           width: size.width,

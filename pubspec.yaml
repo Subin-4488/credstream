@@ -66,6 +66,9 @@ flutter:
   assets:
     - asset/videos/edit.mp4
     - asset/videos/result.mkv
+    - asset/images/logo/CredStream-logos_white.png
+    - asset/images/logo/CredStream-logos_black1.png
+    - asset/images/logo/CredStream-logos_white1.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -86,6 +89,9 @@ flutter:
     - family: Nunito
       fonts:
         - asset: asset/fonts/Nunito-VariableFont_wght.ttf
+    - family: ShantellSans
+      fonts:
+        - asset: asset/fonts/ShantellSans-VariableFont_BNCE,INFM,SPAC,wght.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
