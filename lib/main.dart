@@ -1,5 +1,7 @@
 import 'package:credstream/core/apptheme.dart';
+import 'package:credstream/screens/auth/login.dart';
 import 'package:credstream/screens/auth/signup.dart';
+import 'package:credstream/screens/auth/widgets/main_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/screens/main_page/main_page.dart';
 
@@ -17,10 +19,12 @@ class Main extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       routes: {
-        "signup": (context) =>  Signup(),
-        "mainPage": (context) => MainPage()
+        "main_auth": (context) =>  MainAuth(),
+        "mainPage": (context) => MainPage(),
+        "login" :(context) => Login(),
+        "signup" :(context) => Signup()
       },
-      initialRoute: "signup",
+      initialRoute: "main_auth", 
     );
   }
 }

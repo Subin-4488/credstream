@@ -51,15 +51,11 @@ app.*.map.json
 asset/fonts/IndieFlower-Regular.ttf
 asset/fonts/Nunito-VariableFont_wght.ttf
 asset/fonts/Unbounded-SemiBold.ttf
+asset/images/logo/CredStream-1.gif
 asset/images/logo/CredStream-1.png
-asset/images/logo/CredStream-logos_black.png
 asset/images/logo/CredStream-logos_black1.png
-asset/images/logo/CredStream-logos_transparent.png
 asset/images/logo/CredStream-logos_transparent1.png
-asset/images/logo/CredStream-logos_white.png
 asset/images/logo/CredStream-logos_white1.png
-asset/images/logo/CredStream-logos1.jpeg
 asset/videos/CredStream-1.mp4
 asset/videos/edit.mp4
-asset/videos/result.avi
 asset/videos/result.mkv

@@ -33,7 +33,6 @@ dependencies:
     sdk: flutter
   video_player: ^2.5.1
   provider: ^6.0.5
-  flutter_vlc_player: ^7.2.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -68,6 +67,7 @@ flutter:
     - asset/videos/result.mkv
     - asset/images/logo/CredStream-logos_white1.png
     - asset/images/logo/CredStream-logos_black1.png
+    - asset/images/logo/CredStream-1.gif
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

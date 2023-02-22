@@ -1,4 +1,4 @@
-import 'package:credstream/dummy.dart';
+import 'package:credstream/player/dummy.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
