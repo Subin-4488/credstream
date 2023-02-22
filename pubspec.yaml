@@ -66,9 +66,8 @@ flutter:
   assets:
     - asset/videos/edit.mp4
     - asset/videos/result.mkv
-    - asset/images/logo/CredStream-logos_white.png
-    - asset/images/logo/CredStream-logos_black1.png
     - asset/images/logo/CredStream-logos_white1.png
+    - asset/images/logo/CredStream-logos_black1.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

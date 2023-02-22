@@ -113,7 +113,7 @@ class PlayButton extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
-                .copyWith(color: kRed, fontFamily: 'Unbounded')),
+                .copyWith(color: kBlue, fontFamily: 'Unbounded')),
       ),
       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(kWhite)),
     );

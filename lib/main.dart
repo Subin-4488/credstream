@@ -17,10 +17,10 @@ class Main extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       routes: {
-        "signup": (context) => const Signup(),
+        "signup": (context) =>  Signup(),
         "mainPage": (context) => MainPage()
       },
-      initialRoute: "mainPage",
+      initialRoute: "signup",
     );
   }
 }
