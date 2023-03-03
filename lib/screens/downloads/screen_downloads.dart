@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
-import 'package:credstream/screens/widgets/appbar_widget.dart';
 
 final images = [
   'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/d9nBoowhjiiYc4FBNtQkPY7c11H.jpg',
@@ -73,15 +72,17 @@ class Section2 extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-         Text(
+        Text(
           'Introducing Downloads for You',
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.displayLarge,
         ),
         kHeight,
         Text(
-            'We\'ll download a personalized selection of\nmovies and shows for you, so there\'s\nalways something to watch on your\ndevice.',
-            textAlign: TextAlign.center,style: Theme.of(context).textTheme.bodyLarge,),
+          'We\'ll download a personalized selection of\nmovies and shows for you, so there\'s\nalways something to watch on your\ndevice.',
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         SizedBox(
           height: size.width * .75,
           width: size.width,
@@ -168,6 +169,25 @@ class CustomImage extends StatelessWidget {
               borderRadius: borderRadius,
               image: DecorationImage(
                   fit: BoxFit.cover, image: NetworkImage(img)))),
+    );
+  }
+}
+
+class AppBarWidget extends StatelessWidget {
+  final String title;
+  const AppBarWidget({Key? key, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+            child: Text(
+          title,
+          style: Theme.of(context).textTheme.displayLarge,
+        )),
+        const Icon(Icons.cast),
+      ],
     );
   }
 }

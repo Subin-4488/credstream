@@ -1,4 +1,3 @@
-import 'package:credstream/core/colors.dart';
 import 'package:flutter/material.dart';
 
 class MainAuth extends StatefulWidget {
@@ -124,7 +123,7 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       width: size.width * .9,
       child: ElevatedButton(
         onPressed: () {

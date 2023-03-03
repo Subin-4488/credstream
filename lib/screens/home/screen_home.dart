@@ -4,8 +4,8 @@ import 'package:credstream/core/constants.dart';
 import 'package:credstream/screens/home/widgets/backgroundcard.dart';
 import 'package:credstream/screens/home/widgets/home_title_content.dart';
 import 'package:credstream/screens/home/widgets/scroll_app_bar.dart';
-import 'package:credstream/screens/widgets/main_card.dart';
-import 'package:credstream/screens/widgets/main_title.dart';
+import 'package:credstream/screens/home/widgets/main_card.dart';
+import 'package:credstream/screens/screen_widgets/main_title.dart';
 
 final ValueNotifier<bool> hometitleNotifier = ValueNotifier(true);
 double animatedContainerheight = -1;

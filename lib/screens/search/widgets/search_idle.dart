@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
 import 'package:credstream/screens/downloads/screen_downloads.dart';
-import 'package:credstream/screens/widgets/main_title.dart';
+import 'package:credstream/screens/screen_widgets/main_title.dart';
 
 class SearchIdle extends StatelessWidget {
   const SearchIdle({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:credstream/core/constants.dart';
-import 'package:credstream/screens/widgets/main_card.dart';
-import 'package:credstream/screens/widgets/main_title.dart';
+import 'package:credstream/screens/home/widgets/main_card.dart';
+import 'package:credstream/screens/screen_widgets/main_title.dart';
 
 class HomeTitleContent extends StatelessWidget {
   final String title;

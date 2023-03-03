@@ -1,6 +1,5 @@
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/screens/auth/signup.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DobTextField extends StatelessWidget with ChangeNotifier {
@@ -23,7 +22,6 @@ class DobTextField extends StatelessWidget with ChangeNotifier {
             firstDate: DateTime(1970, 1, 1),
             lastDate: DateTime(2010, 1, 1)))!;
         Signup.dob.notifyListeners();
-        print(Signup.dob.value);
       },
       decoration: InputDecoration(
         label: Signup.dob.value.year != 1920
@@ -110,7 +108,7 @@ class FormTextFormField extends StatelessWidget {
                     .copyWith(color: kGrey400),
                 suffixIcon: index == 2
                     ? IconButton(
-                        icon: Icon(Icons.visibility),
+                        icon: const Icon(Icons.visibility),
                         color: kWhite,
                         onPressed: () {
                           visible.value = !visible.value;
