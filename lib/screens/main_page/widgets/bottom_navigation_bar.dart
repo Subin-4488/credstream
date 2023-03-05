@@ -22,7 +22,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: Icon(Icons.search), label: 'search'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.download), label: 'downloads')
+                  icon: Icon(Icons.download), label: 'downloads'),
+                  BottomNavigationBarItem(
+                  icon: Icon(Icons.settings), label: 'settings')
             ]);
       },
     );

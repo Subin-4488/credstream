@@ -1,3 +1,4 @@
+import 'package:credstream/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/screens/downloads/screen_downloads.dart';
 import 'package:credstream/screens/home/screen_home.dart';
@@ -6,17 +7,17 @@ import 'package:credstream/screens/search/screen_search.dart';
 
 class MainPage extends StatelessWidget {
   final _pages = [
-    ScreenHome(),
+    const ScreenHome(),
     const ScreenSearch(),
-    const ScreenDownloads()
+    const ScreenDownloads(),
+    const Settings()
   ];
 
   MainPage({super.key});
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: bgColor,
       body: SafeArea(
         child: ValueListenableBuilder(
             valueListenable: indexNotifier,

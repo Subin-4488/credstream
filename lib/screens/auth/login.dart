@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
 
-  bool isvisible = false;
   Login({super.key});
   final formkey = GlobalKey<FormState>();
 
-  TextEditingController emailController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
 
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

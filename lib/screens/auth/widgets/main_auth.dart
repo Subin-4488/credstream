@@ -1,55 +1,16 @@
 import 'package:flutter/material.dart';
 
-class MainAuth extends StatefulWidget {
+class MainAuth extends StatelessWidget {
   const MainAuth({super.key});
 
   @override
-  State<MainAuth> createState() => _MainAuthState();
-}
-
-class _MainAuthState extends State<MainAuth> {
-  bool flag = true;
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 4), () {
-      setState(() {
-        flag = false;
-      });
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-        backgroundColor: flag ? const Color.fromRGBO(168, 40, 40, 1) : null,
-        body: AnimatedCrossFade(
-            firstChild: FirstChild(size: size),
-            secondChild: const SecondChild(),
-            firstCurve: Curves.easeInCubic,
-            secondCurve: Curves.easeInCirc,
-            crossFadeState:
-                flag ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-            duration: const Duration(milliseconds: 400)));
+    return const Scaffold(body: FirstChild());
   }
 }
 
 class FirstChild extends StatelessWidget {
-  final Size size;
-  const FirstChild({super.key, required this.size});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-        height: size.height,
-        width: size.width,
-        child: Image.asset('asset/images/logo/CredStream-1.gif'));
-  }
-}
-
-class SecondChild extends StatelessWidget {
-  const SecondChild({super.key});
+  const FirstChild({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,8 @@ import 'package:credstream/core/colors.dart';
 import 'package:credstream/screens/auth/signup.dart';
 import 'package:flutter/material.dart';
 
-class DobTextField extends StatelessWidget with ChangeNotifier {
-  DobTextField({super.key});
+class DobTextField extends StatelessWidget {
+  const DobTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class DobTextField extends StatelessWidget with ChangeNotifier {
         Signup.dob.value = (await showDatePicker(
             context: context,
             initialDate: DateTime(2002, 1, 1),
-            firstDate: DateTime(1970, 1, 1),
+            firstDate: DateTime(1970, 1, 1), 
             lastDate: DateTime(2010, 1, 1)))!;
         Signup.dob.notifyListeners();
       },
@@ -55,8 +55,8 @@ class FormTextFormField extends StatelessWidget {
   final IconData icon;
   final int index;
   final TextEditingController controller;
-
-  ValueNotifier<bool> visible = ValueNotifier(false);
+ 
+  final ValueNotifier<bool> visible = ValueNotifier(false);
 
   FormTextFormField(
       {super.key,
@@ -64,7 +64,7 @@ class FormTextFormField extends StatelessWidget {
       required this.icon,
       required this.index,
       required this.controller});
-
+ 
   @override
   Widget build(BuildContext context) {
     return Padding(

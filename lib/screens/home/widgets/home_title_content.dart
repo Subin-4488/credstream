@@ -15,7 +15,10 @@ class HomeTitleContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MainTitle(title: title),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0, right: 15, top: 5), 
+          child: MainTitle(title: title),
+        ),
         kHeight,
         LimitedBox(
           maxHeight: 200,
