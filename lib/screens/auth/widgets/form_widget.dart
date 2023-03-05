@@ -2,8 +2,8 @@ import 'package:credstream/core/colors.dart';
 import 'package:credstream/screens/auth/signup.dart';
 import 'package:flutter/material.dart';
 
-class DobTextField extends StatelessWidget {
-  const DobTextField({super.key});
+class DobTextField extends StatelessWidget with ChangeNotifier {
+  DobTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,9 @@ class DobTextField extends StatelessWidget {
         Signup.dob.value = (await showDatePicker(
             context: context,
             initialDate: DateTime(2002, 1, 1),
-            firstDate: DateTime(1970, 1, 1), 
+            firstDate: DateTime(1970, 1, 1),
             lastDate: DateTime(2010, 1, 1)))!;
+        print(Signup.dob.value);
         Signup.dob.notifyListeners();
       },
       decoration: InputDecoration(
@@ -55,7 +56,7 @@ class FormTextFormField extends StatelessWidget {
   final IconData icon;
   final int index;
   final TextEditingController controller;
- 
+
   final ValueNotifier<bool> visible = ValueNotifier(false);
 
   FormTextFormField(
@@ -64,7 +65,7 @@ class FormTextFormField extends StatelessWidget {
       required this.icon,
       required this.index,
       required this.controller});
- 
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -74,7 +75,7 @@ class FormTextFormField extends StatelessWidget {
         builder: (context, value, child) {
           return TextFormField(
             controller: controller,
-            obscureText: ((index == 2)&&(!visible.value)) ? true : false,
+            obscureText: ((index == 2) && (!visible.value)) ? true : false,
             style:
                 Theme.of(context).textTheme.bodyLarge!.copyWith(color: kWhite),
             validator: (value) {

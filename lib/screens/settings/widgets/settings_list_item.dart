@@ -31,8 +31,8 @@ class SettingsTileItem extends StatelessWidget {
           if (index == 1) {
           } else if (index == 2) {
           } else if (index == 3) {
-            await Loading.startLoading(context);
             indexNotifier.value = 0;
+            await Loading.startLoading(context);
             await LocalDBCrud.removeUser();
             if (context.mounted) {
              Loading.stopLoading(context);

@@ -45,7 +45,7 @@ app.*.map.json
 /android/app/release
 
 #keys
-/lib/keys
+/lib/keys/keys.dart
 
 #other data
 asset/fonts/IndieFlower-Regular.ttf
