@@ -21,7 +21,6 @@ class DobTextField extends StatelessWidget with ChangeNotifier {
             initialDate: DateTime(2002, 1, 1),
             firstDate: DateTime(1970, 1, 1),
             lastDate: DateTime(2010, 1, 1)))!;
-        print(Signup.dob.value);
         Signup.dob.notifyListeners();
       },
       decoration: InputDecoration(
@@ -56,6 +55,7 @@ class FormTextFormField extends StatelessWidget {
   final IconData icon;
   final int index;
   final TextEditingController controller;
+  String? passrecheck;
 
   final ValueNotifier<bool> visible = ValueNotifier(false);
 
@@ -64,7 +64,8 @@ class FormTextFormField extends StatelessWidget {
       required this.hint,
       required this.icon,
       required this.index,
-      required this.controller});
+      required this.controller,
+      this.passrecheck});
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +76,10 @@ class FormTextFormField extends StatelessWidget {
         builder: (context, value, child) {
           return TextFormField(
             controller: controller,
-            obscureText: ((index == 2) && (!visible.value)) ? true : false,
+            obscureText: ((index == 2 || index==3) && (!visible.value)) ? true : false,
             style:
                 Theme.of(context).textTheme.bodyLarge!.copyWith(color: kWhite),
-            validator: (value) {
+            validator: (value) { 
               if (index == 0) {
                 if (value == null || value.isEmpty) {
                   return "Enter your name";
@@ -94,6 +95,11 @@ class FormTextFormField extends StatelessWidget {
                 } else if (!value.contains(RegExp(r'[@]|[#]|[$]|[%]|[&]'))) {
                   return "Password must have atleast 1 special character";
                 }
+              } else if (index == 3) { 
+                if (passrecheck == '' ||
+                    value!.compareTo(passrecheck!) != 0) {
+                  return "Password dont match";
+                }
               }
               return null;
             },
@@ -107,7 +113,7 @@ class FormTextFormField extends StatelessWidget {
                     .textTheme
                     .bodyLarge!
                     .copyWith(color: kGrey400),
-                suffixIcon: index == 2
+                suffixIcon: index == 2 || index==3
                     ? IconButton(
                         icon: const Icon(Icons.visibility),
                         color: kWhite,

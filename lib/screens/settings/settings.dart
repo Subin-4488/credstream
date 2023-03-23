@@ -34,12 +34,14 @@ class Settings extends StatelessWidget {
                   height: size.height * .11,
                   width: size.width * .25,
                   decoration: BoxDecoration(
-                      color:kWhite, borderRadius: BorderRadius.circular(20)),
+                      color: kWhite, borderRadius: BorderRadius.circular(20)),
                   child: IconButton(
-                    icon: const Icon(CupertinoIcons.person_add, size: 40,color: kBlack,),
-                    onPressed: () {
-                      
-                    },
+                    icon: const Icon(
+                      CupertinoIcons.person_add,
+                      size: 40,
+                      color: kBlack,
+                    ),
+                    onPressed: () {},
                     color: dark ? kWhite : kBlack,
                   ),
                 ),
@@ -49,7 +51,7 @@ class Settings extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
-                      .copyWith(fontSize: 25,color: kBlack),
+                      .copyWith(fontSize: 25, color: kBlack),
                 )
               ],
             ),
@@ -60,13 +62,15 @@ class Settings extends StatelessWidget {
               subtitle: "learn privacy policies of credstream",
               index: 1,
               iconData: Icons.privacy_tip_outlined,
-              dark: dark),
+              dark: dark,
+              ),
           SettingsTileItem(
               title: "About",
               subtitle: "learn more about credstream",
               index: 2,
               iconData: Icons.info_outline_rounded,
-              dark: dark),
+              dark: dark,
+              ),
           kHeight40,
           const MainTitle(title: "Account"),
           kHeight5,
@@ -74,8 +78,9 @@ class Settings extends StatelessWidget {
               title: "Sign Out",
               subtitle: "",
               index: 3,
-              iconData: Icons.logout, 
-              dark: dark),
+              iconData: Icons.logout,
+              dark: dark,
+              ),
         ],
       ),
     );

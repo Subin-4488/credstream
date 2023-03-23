@@ -1,4 +1,8 @@
+import 'package:credstream/core/colors.dart';
+import 'package:credstream/provider/LoadingProvider.dart';
+import 'package:credstream/screens/screen_widgets/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainAuth extends StatelessWidget {
   const MainAuth({super.key});
@@ -17,8 +21,9 @@ class FirstChild extends StatelessWidget {
     bool flag = MediaQuery.of(context).platformBrightness == Brightness.dark
         ? true
         : false;
+    final size = MediaQuery.of(context).size;
     return SizedBox(
-      height: MediaQuery.of(context).size.height,
+      height: size.height,
       child: Column(
         children: [
           const Spacer(),
@@ -46,7 +51,7 @@ class FirstChild extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'stream across boundaries \nThe best OTT ',
+                  'Stream across boundaries \nThe best OTT ',
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge!
@@ -61,8 +66,8 @@ class FirstChild extends StatelessWidget {
                 index: 0,
               ),
               const Button(label: "Sign up", index: 1),
-              const SizedBox(
-                height: 18,
+              SizedBox(
+                height: size.height*.05, 
               ),
             ],
           ),

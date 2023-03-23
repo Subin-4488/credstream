@@ -1,13 +1,12 @@
 class User {
-  String name;
-  DateTime dateofbirth;
+  String? name;
+  DateTime? dateofbirth;
   String email;
   String password;
-  
 
   User(
-      {required this.name,
-      required this.dateofbirth,
+      {this.name,
+      this.dateofbirth,
       required this.email,
       required this.password});
 
@@ -19,9 +18,10 @@ class User {
       );
 
   static Map<String, dynamic> toJson(User user) => {
-        'name': user.name,
-        'dateofbirth': user.dateofbirth.toIso8601String(),
+        'name': user.name ?? '',
+        'date_of_birth':
+            user.dateofbirth != null ? user.dateofbirth!.toIso8601String() : '',
         'email': user.email,
-        'password': user.password
+        'password': user.password,
       };
 }

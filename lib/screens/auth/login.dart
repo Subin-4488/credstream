@@ -1,8 +1,17 @@
+import 'package:credstream/core/colors.dart';
+import 'package:credstream/core/values.dart';
+import 'package:credstream/domain/localDB/localdb.dart';
+import 'package:credstream/domain/localDB/localdb_crud.dart';
+import 'package:credstream/domain/user/user_api.dart';
+import 'package:credstream/models/credential.dart';
+import 'package:credstream/models/user.dart';
+import 'package:credstream/provider/LoadingProvider.dart';
 import 'package:credstream/screens/auth/widgets/form_widget.dart';
+import 'package:credstream/screens/screen_widgets/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Login extends StatelessWidget {
-
+class Login extends StatelessWidget with ChangeNotifier {
   Login({super.key});
   final formkey = GlobalKey<FormState>();
 
@@ -25,51 +34,112 @@ class Login extends StatelessWidget {
         Form(
             child: Form(
           key: formkey,
-          child: Column(
+          child: Stack(
             children: [
-              const Spacer(),
-              Container(
-                decoration: BoxDecoration(
-                    color: !flag
-                        ? const Color.fromARGB(255, 51, 69, 69)
-                        : const Color.fromARGB(196, 18, 99, 153),
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(25),
-                        topRight: Radius.circular(25))),
-                height: size.height * .46,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    FormTextFormField(
-                        hint: "Email",
-                        icon: Icons.email,
-                        index: 1,
-                        controller: emailController),
-                    FormTextFormField(
-                        hint: "Password",
-                        icon: Icons.password_rounded,
-                        index: 2,
-                        controller: passwordController),
-                    const Expanded(child: SizedBox()),
-                    SizedBox(
-                      width: size.width * .5,
-                      child: ElevatedButton.icon(
-                          onPressed: () {
-                            if (formkey.currentState!.validate()) {}
-                          },
-                          icon: const Icon(Icons.login),
-                          label: Text(
-                            "Log in",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(fontSize: 16, color: Colors.white),
-                          )),
+              Column(
+                children: [
+                  const Spacer(),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: !flag
+                            ? const Color.fromARGB(255, 39, 39, 39) 
+                            : const Color.fromARGB(255, 37, 37, 37),
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25))),
+                    height: size.height * .40,
+                    child: Column(
+                      children: [
+                        const Spacer(),
+                        FormTextFormField(
+                            hint: "Email",
+                            icon: Icons.email,
+                            index: 1,
+                            controller: emailController),
+                        FormTextFormField(
+                            hint: "Password",
+                            icon: Icons.password_rounded,
+                            index: 2,
+                            controller: passwordController),
+                        const Expanded(child: SizedBox()),
+                        SizedBox(
+                          width: size.width * .5,
+                          child: Consumer<LoadingProvider>(
+                            builder: (context, value, child) =>
+                                ElevatedButton.icon(
+                                    onPressed: () async {
+                                      if (formkey.currentState!.validate()) {
+                                        value.startLoading();
+                                        User user = User(
+                                            email: emailController.text.trim(),
+                                            password:
+                                                passwordController.text.trim());
+
+                                        Credential? credential =
+                                            await UserApi.loginUser(user);
+
+                                        value.stopLoading();
+
+                                        if (context.mounted &&
+                                            credential != null) {
+                                          await Toast.show(
+                                              context, "Login success");
+                                          LocalDBUser userSave = LocalDBUser(
+                                              email:
+                                                  emailController.text.trim(),
+                                              name: credential.name);
+                                          userSave.loggedin = true;
+                                          userSave.key =
+                                              await LocalDBCrud.createUser(
+                                                  userSave);
+
+                                          if (context.mounted) {
+                                            await Navigator.of(context)
+                                                .pushNamedAndRemoveUntil(
+                                                    'mainPage',
+                                                    (route) => false);
+                                          }
+                                        } else if (credential == null) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                                  backgroundColor: kRed,
+                                                  content: Text(
+                                                    'No account exist! please try again',
+                                                  )));
+                                        }
+                                      }
+                                    },
+                                    icon: const Icon(Icons.login),
+                                    label: Text(
+                                      "Log in",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                              fontSize: 16,
+                                              color: Colors.white),
+                                    )),
+                          ),
+                        ),
+                        const Spacer(),
+                      ],
                     ),
-                    const Spacer(),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              Consumer<LoadingProvider>(
+                builder: (context, value, child) {
+                  print("Inside loading builder: ${value.loading}");
+                  return Visibility(
+                    visible: value.loading,
+                    child: Container(
+                        color: flag ? kBlack : kWhite,
+                        height: size.height,
+                        width: size.width,
+                        child: const Loading()),
+                  );
+                },
+              )
             ],
           ),
         ))
