@@ -71,8 +71,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - asset/videos/edit.mp4
-    - asset/videos/result.mkv
     - asset/images/logo/CredStream-logos_white1.png
     - asset/images/logo/CredStream-logos_black1.png
     - asset/images/logo/CredStream-1.png
