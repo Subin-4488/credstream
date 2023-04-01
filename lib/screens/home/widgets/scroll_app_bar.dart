@@ -1,28 +1,25 @@
 import 'package:credstream/core/colors.dart';
+import 'package:credstream/core/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/screens/home/screen_home.dart';
 
 class ScrollAppBar extends StatelessWidget {
   const ScrollAppBar({
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
-    Brightness brightness = MediaQuery.of(context).platformBrightness;
     return ValueListenableBuilder(
       valueListenable: hometitleNotifier,
       builder: (context, value, child) {
         return AnimatedContainer(
           decoration: BoxDecoration(
-              color: brightness == Brightness.dark
+              color: deviceDarkThemeFlag
                   ? kFloatingContainerDark
                   : kFloatingContainerLight,
               borderRadius: const BorderRadius.all(Radius.circular(5))),
-          width: size.width,
+          width: deviceSize.width,
           alignment: Alignment.center,
           height: animatedContainerheight,
           curve: Curves.fastOutSlowIn,
@@ -32,7 +29,7 @@ class ScrollAppBar extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    Image.asset(brightness == Brightness.light
+                    Image.asset(deviceDarkThemeFlag
                         ? 'asset/images/logo/CredStream-logos_black1.png'
                         : 'asset/images/logo/CredStream-logos_white1.png'),
                     Text(
@@ -75,13 +72,12 @@ class TItleTextButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Brightness brightness = MediaQuery.of(context).platformBrightness;
     return TextButton(
         onPressed: (() {}),
         child: Text(
           text,
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: brightness == Brightness.dark ? kWhite : kBlack),
+              color:deviceDarkThemeFlag ? kWhite : kBlack), 
         ));
   }
 }

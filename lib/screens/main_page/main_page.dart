@@ -1,7 +1,6 @@
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
-import 'package:credstream/core/values.dart';
-import 'package:credstream/provider/LoadingProvider.dart';
+import 'package:credstream/provider/loadingProvider.dart';
 import 'package:credstream/screens/screen_widgets/loading.dart';
 import 'package:credstream/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +22,11 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    bool flag = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? true
-        : false;
+    deviceSize = MediaQuery.of(context).size;
+    deviceDarkThemeFlag =
+        MediaQuery.of(context).platformBrightness == Brightness.dark
+            ? true 
+            : false;
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -38,13 +38,12 @@ class MainPage extends StatelessWidget {
                 })),
             Consumer<LoadingProvider>(
               builder: (context, value, child) {
-                print(value.loading);
                 return Visibility(
                   visible: value.loading,
                   child: Container(
-                      color: flag ? kBlack : kWhite,
-                      height: size.height,
-                      width: size.width,
+                      color: deviceDarkThemeFlag ? kBlack : kWhite,
+                      height: deviceSize.height,
+                      width: deviceSize.width,
                       child: const Loading()),
                 );
               },

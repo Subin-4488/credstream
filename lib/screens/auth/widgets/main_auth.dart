@@ -1,14 +1,17 @@
-import 'package:credstream/core/colors.dart';
-import 'package:credstream/provider/LoadingProvider.dart';
-import 'package:credstream/screens/screen_widgets/loading.dart';
+import 'package:credstream/core/constants.dart';
+import 'package:credstream/screens/auth/signup.dart';
+import 'package:credstream/screens/main_page/widgets/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MainAuth extends StatelessWidget {
   const MainAuth({super.key});
 
   @override
   Widget build(BuildContext context) {
+    deviceSize = MediaQuery.of(context).size;
+    deviceDarkThemeFlag = MediaQuery.of(context).platformBrightness == Brightness.dark
+        ? true
+        : false;
     return const Scaffold(body: FirstChild());
   }
 }
@@ -18,18 +21,20 @@ class FirstChild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool flag = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? true
-        : false;
-    final size = MediaQuery.of(context).size;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      indexNotifier.value = 0;
+      Signup.dob.value = DateTime(1920);
+    });
+
+    Signup.dob.value = DateTime(1920);
     return SizedBox(
-      height: size.height,
+      height: deviceSize.height,
       child: Column(
         children: [
           const Spacer(),
           Column(
             children: [
-              flag
+              deviceDarkThemeFlag
                   ? Image.asset('asset/images/logo/CredStream-logos_white1.png')
                   : Image.asset(
                       'asset/images/logo/CredStream-logos_black1.png'),
@@ -67,7 +72,7 @@ class FirstChild extends StatelessWidget {
               ),
               const Button(label: "Sign up", index: 1),
               SizedBox(
-                height: size.height*.05, 
+                height: deviceSize.height * .05,
               ),
             ],
           ),
@@ -88,9 +93,8 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return SizedBox(
-      width: size.width * .9,
+      width: deviceSize.width * .9,
       child: ElevatedButton(
         onPressed: () {
           if (index == 0) {

@@ -51,11 +51,12 @@ class Section1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: const [
-        Icon(Icons.settings),
+      children:  [
+        const Icon(Icons.settings),
         kWidth,
         Text(
           'Smart Downloads',
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
       ],
     );
@@ -69,7 +70,6 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         Text(
@@ -84,27 +84,24 @@ class Section2 extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         SizedBox(
-          height: size.width * .75,
-          width: size.width,
+          height: deviceSize.width * .75,
+          width: deviceSize.width,
           child: Stack(
             alignment: Alignment.center,
             children: [
               CircleAvatar(
-                  backgroundColor: circleKColor, radius: size.width * .32),
+                  backgroundColor: circleKColor, radius: deviceSize.width * .32),
               CustomImage(
-                size: size,
                 img: images[0],
                 angle: -18 * pi / 180,
                 edgeInsets: const EdgeInsets.only(right: 150, bottom: 30),
               ),
               CustomImage(
-                size: size,
                 img: images[2],
                 angle: 18 * pi / 180,
                 edgeInsets: const EdgeInsets.only(left: 150, bottom: 30),
               ),
               CustomImage(
-                size: size,
                 img: images[1],
                 angle: 0,
                 edgeInsets: EdgeInsets.zero,
@@ -124,7 +121,6 @@ class Section3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         SizedBox(
@@ -132,7 +128,7 @@ class Section3 extends StatelessWidget {
             child:
                 ElevatedButton(onPressed: () {}, child: const Text('Set Up'))),
         SizedBox(
-            width: size.width * .8,
+            width: deviceSize.width * .8,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: kWhite, foregroundColor: kBlack),
@@ -146,13 +142,11 @@ class Section3 extends StatelessWidget {
 class CustomImage extends StatelessWidget {
   const CustomImage(
       {Key? key,
-      required this.size,
       required this.img,
       required this.angle,
       required this.edgeInsets})
       : super(key: key);
 
-  final Size size;
   final String img;
   final double angle;
   final EdgeInsets edgeInsets;
@@ -163,8 +157,8 @@ class CustomImage extends StatelessWidget {
       angle: angle,
       child: Container(
           margin: edgeInsets,
-          height: size.height * .25,
-          width: size.width * .35,
+          height: deviceSize.height * .25,
+          width: deviceSize.width * .35,
           decoration: BoxDecoration(
               borderRadius: borderRadius,
               image: DecorationImage(

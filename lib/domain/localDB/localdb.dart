@@ -13,7 +13,11 @@ class LocalDBUser {
   bool loggedin = false;
 
   @HiveField(3)
-  int key=0;
+  int key = 0;
 
-  LocalDBUser({required this.email, required this.name});
+  @HiveField(4)
+  String credentialWatermark;
+
+  LocalDBUser(
+      {required this.email, required this.name, required this.credentialWatermark});
 }

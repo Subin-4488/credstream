@@ -30,14 +30,13 @@ class SearchItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return ListView.separated(
         itemBuilder: ((context, index) {
           return Row(
             children: [
               Container(
-                height: size.height * .1,
-                width: size.width * .38,
+                height: deviceSize.height * .1,
+                width: deviceSize.width * .38,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(images[0]), fit: BoxFit.cover)),

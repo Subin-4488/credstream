@@ -19,19 +19,26 @@ class LocalDBUserAdapter extends TypeAdapter<LocalDBUser> {
     return LocalDBUser(
       email: fields[0] as String,
       name: fields[1] as String,
-    )..loggedin = fields[2] as bool;
+      credentialWatermark: fields[4] as String,
+    )
+      ..loggedin = fields[2] as bool
+      ..key = fields[3] as int;
   }
 
   @override
   void write(BinaryWriter writer, LocalDBUser obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.email)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.loggedin);
+      ..write(obj.loggedin)
+      ..writeByte(3)
+      ..write(obj.key)
+      ..writeByte(4)
+      ..write(obj.credentialWatermark);
   }
 
   @override

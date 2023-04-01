@@ -1,11 +1,12 @@
 import 'package:credstream/core/colors.dart';
+import 'package:credstream/core/constants.dart';
 import 'package:credstream/core/values.dart';
 import 'package:credstream/domain/localDB/localdb.dart';
 import 'package:credstream/domain/localDB/localdb_crud.dart';
 import 'package:credstream/domain/user/user_api.dart';
 import 'package:credstream/models/credential.dart';
 import 'package:credstream/models/user.dart';
-import 'package:credstream/provider/LoadingProvider.dart';
+import 'package:credstream/provider/loadingProvider.dart';
 import 'package:credstream/screens/auth/widgets/form_widget.dart';
 import 'package:credstream/screens/screen_widgets/loading.dart';
 import 'package:flutter/material.dart';
@@ -21,14 +22,10 @@ class Login extends StatelessWidget with ChangeNotifier {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    bool flag = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? true
-        : false;
     return Scaffold(
         body: Stack(
       children: [
-        flag
+        deviceDarkThemeFlag
             ? Image.asset('asset/images/logo/CredStream-logos_white1.png')
             : Image.asset('asset/images/logo/CredStream-logos_black1.png'),
         Form(
@@ -41,13 +38,13 @@ class Login extends StatelessWidget with ChangeNotifier {
                   const Spacer(),
                   Container(
                     decoration: BoxDecoration(
-                        color: !flag
-                            ? const Color.fromARGB(255, 39, 39, 39) 
+                        color: !deviceDarkThemeFlag
+                            ? const Color.fromARGB(255, 39, 39, 39)
                             : const Color.fromARGB(255, 37, 37, 37),
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(25),
                             topRight: Radius.circular(25))),
-                    height: size.height * .40,
+                    height: deviceSize.height * .40,
                     child: Column(
                       children: [
                         const Spacer(),
@@ -63,12 +60,13 @@ class Login extends StatelessWidget with ChangeNotifier {
                             controller: passwordController),
                         const Expanded(child: SizedBox()),
                         SizedBox(
-                          width: size.width * .5,
+                          width: deviceSize.width * .5,
                           child: Consumer<LoadingProvider>(
                             builder: (context, value, child) =>
                                 ElevatedButton.icon(
                                     onPressed: () async {
                                       if (formkey.currentState!.validate()) {
+                                        
                                         value.startLoading();
                                         User user = User(
                                             email: emailController.text.trim(),
@@ -87,7 +85,10 @@ class Login extends StatelessWidget with ChangeNotifier {
                                           LocalDBUser userSave = LocalDBUser(
                                               email:
                                                   emailController.text.trim(),
-                                              name: credential.name);
+                                              name: credential.name,
+                                              credentialWatermark: credential
+                                                  .credential
+                                                  .toString());
                                           userSave.loggedin = true;
                                           userSave.key =
                                               await LocalDBCrud.createUser(
@@ -129,13 +130,12 @@ class Login extends StatelessWidget with ChangeNotifier {
               ),
               Consumer<LoadingProvider>(
                 builder: (context, value, child) {
-                  print("Inside loading builder: ${value.loading}");
                   return Visibility(
                     visible: value.loading,
                     child: Container(
-                        color: flag ? kBlack : kWhite,
-                        height: size.height,
-                        width: size.width,
+                        color: deviceDarkThemeFlag ? kBlack : kWhite,
+                        height: deviceSize.height,
+                        width: deviceSize.width,
                         child: const Loading()),
                   );
                 },

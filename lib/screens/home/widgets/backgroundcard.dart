@@ -1,4 +1,6 @@
-import 'package:credstream/player/dummy.dart';
+import 'package:credstream/core/values.dart';
+import 'package:credstream/models/video.dart';
+import 'package:credstream/player/player.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
@@ -6,16 +8,12 @@ import 'package:credstream/core/constants.dart';
 class BackgroundCard extends StatelessWidget {
   const BackgroundCard({
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
-    Brightness brightness = MediaQuery.of(context).platformBrightness;
     return Container(
-      height: size.height * .75,
+      height: deviceSize.height * .75,
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: NetworkImage(mainImage), fit: BoxFit.cover)),
@@ -26,8 +24,8 @@ class BackgroundCard extends StatelessWidget {
             left: 0,
             right: 0,
             child: Container(
-              height: size.height * .09,
-              color: brightness == Brightness.dark
+              height: deviceSize.height * .09,
+              color: deviceDarkThemeFlag
                   ? kFloatingContainerDark
                   : kFloatingContainerLight,
             ),
@@ -67,7 +65,6 @@ class HomeCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Brightness brightness = MediaQuery.of(context).platformBrightness;
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -80,8 +77,10 @@ class HomeCustomButton extends StatelessWidget {
                 ),
                 Text(
                   text,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: brightness == Brightness.dark ? kWhite : kBlack),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(color: deviceDarkThemeFlag ? kWhite : kBlack),
                 )
               ],
             ))
@@ -100,7 +99,17 @@ class PlayButton extends StatelessWidget {
     return TextButton.icon(
       onPressed: (() {
         Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
-          return const Dummy();
+          return VideoPlayer(
+            videomodel: Video(
+              ownership: 'Ubisoft',
+                link: "$baseUrl/static/videos/hope.m3u8",
+                genre: 'Action',
+                year: 2022,
+                image: mainImage,
+                name: 'Avatar: The Way of Water',
+                description:
+                    'To explore Pandora, genetically matched human scientists use Na\'vi-human hybrids called "avatars." Paraplegic Marine Jake Sully is sent to Pandora to replace his deceased identical twin, who had signed up to be an operator.'),
+          );
         })));
       }),
       icon: const Icon(

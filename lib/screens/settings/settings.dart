@@ -2,19 +2,16 @@ import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
 import 'package:credstream/domain/localDB/localdb_crud.dart';
 import 'package:credstream/screens/screen_widgets/main_title.dart';
-import 'package:credstream/screens/settings/widgets/settings_list_item.dart';
+import 'package:credstream/screens/settings/widgets/settingsTileItem.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    bool dark = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? true
-        : false;
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Column(
@@ -23,7 +20,7 @@ class Settings extends StatelessWidget {
           const MainTitle(title: "Settings"),
           kHeight,
           Container(
-            width: size.width,
+            width: deviceSize.width,
             height: 120,
             decoration: BoxDecoration(
                 color: kBlue, borderRadius: BorderRadius.circular(20)),
@@ -31,8 +28,8 @@ class Settings extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: size.height * .11,
-                  width: size.width * .25,
+                  height: deviceSize.height * .11,
+                  width: deviceSize.width * .25,
                   decoration: BoxDecoration(
                       color: kWhite, borderRadius: BorderRadius.circular(20)),
                   child: IconButton(
@@ -42,7 +39,7 @@ class Settings extends StatelessWidget {
                       color: kBlack,
                     ),
                     onPressed: () {},
-                    color: dark ? kWhite : kBlack,
+                    color: deviceDarkThemeFlag ? kWhite : kBlack,
                   ),
                 ),
                 kWidth20,
@@ -58,31 +55,30 @@ class Settings extends StatelessWidget {
           ),
           kHeight40,
           SettingsTileItem(
-              title: "Privacy",
-              subtitle: "learn privacy policies of credstream",
-              index: 1,
-              iconData: Icons.privacy_tip_outlined,
-              dark: dark,
-              ),
+            title: "Privacy",
+            subtitle: "learn privacy policies of credstream",
+            index: 1,
+            iconData: Icons.privacy_tip_outlined,
+          ),
           SettingsTileItem(
-              title: "About",
-              subtitle: "learn more about credstream",
-              index: 2,
-              iconData: Icons.info_outline_rounded,
-              dark: dark,
-              ),
+            title: "About",
+            subtitle: "learn more about credstream",
+            index: 2,
+            iconData: Icons.info_outline_rounded,
+          ),
           kHeight40,
           const MainTitle(title: "Account"),
           kHeight5,
           SettingsTileItem(
-              title: "Sign Out",
-              subtitle: "",
-              index: 3,
-              iconData: Icons.logout,
-              dark: dark,
-              ),
+            title: "Sign Out",
+            subtitle: "",
+            index: 3,
+            iconData: Icons.logout,
+          ),
         ],
       ),
     );
   }
 }
+
+

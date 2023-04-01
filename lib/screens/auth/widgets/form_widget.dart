@@ -55,7 +55,7 @@ class FormTextFormField extends StatelessWidget {
   final IconData icon;
   final int index;
   final TextEditingController controller;
-  String? passrecheck;
+  TextEditingController? passController;
 
   final ValueNotifier<bool> visible = ValueNotifier(false);
 
@@ -65,7 +65,7 @@ class FormTextFormField extends StatelessWidget {
       required this.icon,
       required this.index,
       required this.controller,
-      this.passrecheck});
+      this.passController});
 
   @override
   Widget build(BuildContext context) {
@@ -75,12 +75,16 @@ class FormTextFormField extends StatelessWidget {
         valueListenable: visible,
         builder: (context, value, child) {
           return TextFormField(
+            textCapitalization:
+                TextCapitalization.sentences, // Capital first letter 
+            keyboardType: TextInputType.text,
             controller: controller,
-            obscureText: ((index == 2 || index==3) && (!visible.value)) ? true : false,
+            obscureText:
+                ((index == 2 || index == 3) && (!visible.value)) ? true : false,
             style:
                 Theme.of(context).textTheme.bodyLarge!.copyWith(color: kWhite),
-            validator: (value) { 
-              if (index == 0) {
+            validator: (value) {
+              if (index == 0) { 
                 if (value == null || value.isEmpty) {
                   return "Enter your name";
                 }
@@ -95,9 +99,9 @@ class FormTextFormField extends StatelessWidget {
                 } else if (!value.contains(RegExp(r'[@]|[#]|[$]|[%]|[&]'))) {
                   return "Password must have atleast 1 special character";
                 }
-              } else if (index == 3) { 
-                if (passrecheck == '' ||
-                    value!.compareTo(passrecheck!) != 0) {
+              } else if (index == 3) {
+                if (passController!.text.isEmpty ||
+                    value!.trim().compareTo(passController!.text.trim()) != 0) {
                   return "Password dont match";
                 }
               }
@@ -113,7 +117,7 @@ class FormTextFormField extends StatelessWidget {
                     .textTheme
                     .bodyLarge!
                     .copyWith(color: kGrey400),
-                suffixIcon: index == 2 || index==3
+                suffixIcon: index == 2 || index == 3
                     ? IconButton(
                         icon: const Icon(Icons.visibility),
                         color: kWhite,
