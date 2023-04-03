@@ -8,7 +8,7 @@ class MainAuth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    deviceSize = MediaQuery.of(context).size;
+    deviceSizePortrait = MediaQuery.of(context).size;
     deviceDarkThemeFlag = MediaQuery.of(context).platformBrightness == Brightness.dark
         ? true
         : false;
@@ -28,7 +28,7 @@ class FirstChild extends StatelessWidget {
 
     Signup.dob.value = DateTime(1920);
     return SizedBox(
-      height: deviceSize.height,
+      height: deviceSizePortrait.height,
       child: Column(
         children: [
           const Spacer(),
@@ -72,7 +72,7 @@ class FirstChild extends StatelessWidget {
               ),
               const Button(label: "Sign up", index: 1),
               SizedBox(
-                height: deviceSize.height * .05,
+                height: deviceSizePortrait.height * .05,
               ),
             ],
           ),
@@ -94,7 +94,7 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: deviceSize.width * .9,
+      width: deviceSizePortrait.width * .9,
       child: ElevatedButton(
         onPressed: () {
           if (index == 0) {

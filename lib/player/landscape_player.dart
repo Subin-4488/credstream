@@ -23,7 +23,7 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
   ValueNotifier<bool> valueNotifier = ValueNotifier(false);
   ValueNotifier<int> pixelNotifier = ValueNotifier(0);
   double top = 0, left = 0;
-  late int topMAX, leftMAX;
+  late double topMAX, leftMAX;
 
   late VlcPlayerController _controller;
 
@@ -37,8 +37,18 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
 
   void updateLocation() {
     Random random = Random();
-    top = random.nextInt(topMAX).toDouble();
-    left = random.nextInt(leftMAX).toDouble();
+    double newTop = random.nextInt(topMAX.toInt()).toDouble();
+    double newLeft = random.nextInt(leftMAX.toInt()).toDouble();
+    if (newTop + 30 > topMAX) {
+      newTop = topMAX - 30;
+    }
+    if (newLeft + 60 > leftMAX) {
+      newLeft = leftMAX - 60;
+    }
+    setState(() {
+      top = newTop;
+      left = newLeft;
+    });
     pixelNotifier.value += 1;
     pixelNotifier.notifyListeners();
   }
@@ -52,35 +62,41 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
         setState(() {
           _loading = false;
           _videoSize = _controller.value.size;
-          print("${_videoSize!.height} ${_videoSize!.width}");
-          print(
-              "Height: ${_controller.value.size.height}  Width: ${_controller.value.size.width}");
         });
       });
     }
   }
 
   Future<void> setLandscape() async {
-    setState(() {
-      _loading = true;
-    });
-    print('Making orientations');
     await SystemChrome.setPreferredOrientations(
         [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
 
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: []);
-    setState(() {
-      _loading = false;
+    Future.delayed(Duration.zero, () {
+      showDialog(
+          context: context,
+          builder: (context) {
+            topMAX = MediaQuery.of(context).size.height;
+            leftMAX = MediaQuery.of(context).size.width;
+            return const SizedBox.shrink();
+          });
     });
+  }
+
+  Future<void> setPortrait() async {
+    await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
   }
 
   @override
   void initState() {
-    topMAX = deviceSize.width.toInt(); //change it
-    leftMAX = deviceSize.height.toInt(); //change it
-    setLandscape();
+    setState(() {
+      _loading = true;
+    });
 
+    setLandscape();
     _controller = VlcPlayerController.network(
       widget.link,
       hwAcc: HwAcc.full,
@@ -88,29 +104,37 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
       options: VlcPlayerOptions(),
     );
 
+    setState(() {
+      _loading = false;
+    });
+
     _controller.addListener(() async {
       if (_controller.value.isInitialized) {
         if (_loading) {
           stopLoading();
         }
 
+        if (_controller.value.isEnded) {
+              await setPortrait(); // on finish video
+              if (context.mounted) {
+                Navigator.of(context).pop(true);
+              }
+            }
+
         if (timer != null) {
           if (!_controller.value.isPlaying ||
-              _controller.value.position == _controller.value.duration) {
+            _controller.value.position == _controller.value.duration) {
             timer!.cancel();
-            if (_controller.value.position == _controller.value.duration) {
-              await setPortrait();
-            }
           } else {
             if (!timer!.isActive && !_exit) {
               timer = Timer.periodic(
-                  const Duration(seconds: 6), (Timer t) => updateLocation());
+                  const Duration(seconds: 1), (Timer t) => updateLocation());
             }
           }
         } else {
           if (_controller.value.isPlaying) {
             timer = Timer.periodic(
-                const Duration(seconds: 6), (Timer t) => updateLocation());
+                const Duration(seconds: 1), (Timer t) => updateLocation());
           }
         }
       }
@@ -123,18 +147,14 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
   void dispose() {
     pixelNotifier.dispose();
     valueNotifier.dispose();
-    _controller.stopRendererScanning(); 
+    _controller.stopRendererScanning();
     _controller.dispose();
     _exit = true;
-    timer!.cancel();
+    if (timer != null) {
+      timer!.cancel();
+    }
     setPortrait();
     super.dispose();
-  }
-
-  Future<void> setPortrait() async {
-    await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
-    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
   }
 
   @override
@@ -145,6 +165,7 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
           setState(() {
             _loading = true;
           });
+          await setPortrait();
           setState(() {
             _loading = false;
           });
@@ -156,19 +177,10 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            FittedBox(
-              fit: BoxFit.cover,
-              child: SizedBox(
-                height:
-                    _videoSize != null ? _videoSize!.height : deviceSize.width,
-                width:
-                    _videoSize != null ? _videoSize!.width : deviceSize.height,
-                child: VlcPlayer(
-                    controller: _controller,
-                    aspectRatio: _controller.value.aspectRatio,
-                    placeholder: const Loading()),
-              ),
-            ),
+            VlcPlayer(
+                controller: _controller,
+                aspectRatio: _controller.value.aspectRatio,
+                placeholder: const Loading()),
             Visibility(
               visible: _visible,
               child: ValueListenableBuilder(
@@ -177,10 +189,17 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
                     return Positioned(
                       top: top,
                       left: left,
-                      child: Text(
-                        widget.watermark,
-                        style: const TextStyle(
-                            color: Colors.white30, fontSize: 25),
+                      child: Container(
+                        color: kRed,
+                        height: 30,
+                        width: 60,
+                        alignment: Alignment.center,
+                        child: Text(
+                          widget.watermark,
+                          softWrap: true,
+                          style: const TextStyle(
+                              color: Colors.white30, fontSize: 15),
+                        ),
                       ),
                     );
                   })),
@@ -189,8 +208,8 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
               visible: _loading,
               child: Container(
                   color: deviceDarkThemeFlag ? kBlack : kWhite,
-                  height: deviceSize.height,
-                  width: deviceSize.width,
+                  height: deviceSizePortrait.height,
+                  width: deviceSizePortrait.width,
                   child: const Loading()),
             )
           ],

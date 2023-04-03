@@ -42,7 +42,7 @@ class Signup extends StatelessWidget with ChangeNotifier {
                   ),
                   Container(
                     //go for singlechildscrollview
-                    height: deviceSize.height * .53,
+                    height: deviceSizePortrait.height * .53,
                     decoration: BoxDecoration(
                         color: !deviceDarkThemeFlag
                             ? const Color.fromARGB(255, 51, 69, 69)
@@ -86,7 +86,7 @@ class Signup extends StatelessWidget with ChangeNotifier {
                               controller: repasswordController,
                               passController: passwordController),
                           SizedBox(
-                            width: deviceSize.width * .5,
+                            width: deviceSizePortrait.width * .5,
                             child: Consumer<LoadingProvider>(
                               builder: (context, value, child) =>
                                   ElevatedButton.icon(
@@ -114,22 +114,28 @@ class Signup extends StatelessWidget with ChangeNotifier {
                                           if (context.mounted && response) {
                                             await Toast.show(
                                                 context, "Account created");
-                                            LocalDBUser userSave = LocalDBUser(
-                                              credentialWatermark: 'null',
-                                                email:
-                                                    emailController.text.trim(),
-                                                name:
-                                                    nameController.text.trim());
-                                            userSave.loggedin = true;
-                                            userSave.key =
-                                                await LocalDBCrud.createUser(
-                                                    userSave);
+                                            // LocalDBUser userSave = LocalDBUser(
+                                            //   credentialWatermark: 'null',
+                                            //     email:
+                                            //         emailController.text.trim(),
+                                            //     name:
+                                            //         nameController.text.trim());
+                                            // userSave.loggedin = true;
+                                            // userSave.key =
+                                            //     await LocalDBCrud.createUser(
+                                            //         userSave);
 
                                             if (context.mounted) {
-                                              await Navigator.of(context)
-                                                  .pushNamedAndRemoveUntil(
-                                                      'mainPage',
-                                                      (route) => false);
+                                              // await Navigator.of(context)
+                                              //     .pushNamedAndRemoveUntil(
+                                              //         'mainPage',
+                                              //         (route) => false);
+                                              await Toast.show(
+                                                  context, "Please Login");
+                                              if (context.mounted) {
+                                                await Navigator.of(context)
+                                                    .pushNamed('login');
+                                              }
                                             }
                                           } else if (!response) {
                                             ScaffoldMessenger.of(context)
@@ -165,8 +171,8 @@ class Signup extends StatelessWidget with ChangeNotifier {
                     visible: value.loading,
                     child: Container(
                         color: deviceDarkThemeFlag ? kBlack : kWhite,
-                        height: deviceSize.height,  
-                        width: deviceSize.width,
+                        height: deviceSizePortrait.height,
+                        width: deviceSizePortrait.width,
                         child: const Loading()),
                   );
                 },

@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:credstream/core/apptheme.dart';
 import 'package:credstream/domain/localDB/localdb.dart';
@@ -30,11 +29,11 @@ class _MainState extends State<Main> {
   @override
   void dispose() {
     super.dispose();
-  }
+  } 
 
   void load() async { 
     await SystemChannels.textInput.invokeMethod('TextInput.hide');
-    await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: SystemUiOverlay.values);
     await Hive.initFlutter();
@@ -74,7 +73,7 @@ class _MainState extends State<Main> {
             providers: [
               ChangeNotifierProvider(
                 create: (context) => LoadingProvider(),
-              ),
+              ), 
             ],
             child: MaterialApp(
               theme: AppTheme.lightTheme,

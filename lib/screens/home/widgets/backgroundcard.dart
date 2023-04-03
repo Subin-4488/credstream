@@ -13,10 +13,10 @@ class BackgroundCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: deviceSize.height * .75,
+      height: deviceSizePortrait.height * .75,
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: NetworkImage(mainImage), fit: BoxFit.cover)),
+              image: NetworkImage(mainImage), fit: BoxFit.fill)), 
       child: Stack(
         children: [
           Positioned(
@@ -24,7 +24,7 @@ class BackgroundCard extends StatelessWidget {
             left: 0,
             right: 0,
             child: Container(
-              height: deviceSize.height * .09,
+              height: deviceSizePortrait.height * .09,
               color: deviceDarkThemeFlag
                   ? kFloatingContainerDark
                   : kFloatingContainerLight,

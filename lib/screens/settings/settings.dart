@@ -17,10 +17,10 @@ class Settings extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const MainTitle(title: "Settings"),
+          const MainTitle(title: "Settings", color: kBlack,),
           kHeight,
           Container(
-            width: deviceSize.width,
+            width: deviceSizePortrait.width,
             height: 120,
             decoration: BoxDecoration(
                 color: kBlue, borderRadius: BorderRadius.circular(20)),
@@ -28,8 +28,8 @@ class Settings extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: deviceSize.height * .11,
-                  width: deviceSize.width * .25,
+                  height: deviceSizePortrait.height * .11,
+                  width: deviceSizePortrait.width * .25,
                   decoration: BoxDecoration(
                       color: kWhite, borderRadius: BorderRadius.circular(20)),
                   child: IconButton(
@@ -67,7 +67,7 @@ class Settings extends StatelessWidget {
             iconData: Icons.info_outline_rounded,
           ),
           kHeight40,
-          const MainTitle(title: "Account"),
+          const MainTitle(title: "Account", color: kBlack,),
           kHeight5,
           SettingsTileItem(
             title: "Sign Out",

@@ -1,4 +1,4 @@
-import 'package:credstream/domain/video/video_api.dart';
+import 'package:credstream/core/colors.dart';
 import 'package:credstream/models/video.dart';
 import 'package:credstream/player/player.dart';
 import 'package:credstream/provider/loadingProvider.dart';
@@ -29,7 +29,7 @@ class HomeTitleContent extends StatelessWidget {
             );
           } else {
             return const Center(child: CircularProgressIndicator());
-          } 
+          }
         });
   }
 }
@@ -40,7 +40,7 @@ class Item extends StatelessWidget {
   const Item({required this.title, required this.list, super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return SizedBox(
       height: 260,
       child: Column(
@@ -48,10 +48,10 @@ class Item extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 15.0, right: 15, top: 5),
-            child: MainTitle(title: title),
+            child: MainTitle(title: title.trim().toUpperCase(), color: kBlack,), 
           ),
           kHeight5,
-          LimitedBox(
+          LimitedBox( 
             maxHeight: 200,
             child: ListView.builder(
                 itemCount: list.length,
@@ -67,9 +67,28 @@ class Item extends StatelessWidget {
                         ));
                         value.stopLoading();
                       },
-                      child: MainCard(
-                        image: list[index].image,
-                      ),
+                      child: title.compareTo("Game") == 0
+                          ? Stack(
+                              alignment: Alignment.bottomLeft,
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(left: 30),
+                                  child: MainCard(
+                                    image: list[index].image,
+                                  ),
+                                ),
+                                Text(
+                                  '${index + 1}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displayLarge!
+                                      .copyWith(fontSize: 85, color: kBlue),
+                                ),
+                              ],
+                            )
+                          : MainCard(
+                              image: list[index].image,
+                            ),
                     ),
                   );
                 }),

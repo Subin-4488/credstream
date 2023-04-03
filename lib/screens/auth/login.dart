@@ -1,6 +1,5 @@
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
-import 'package:credstream/core/values.dart';
 import 'package:credstream/domain/localDB/localdb.dart';
 import 'package:credstream/domain/localDB/localdb_crud.dart';
 import 'package:credstream/domain/user/user_api.dart';
@@ -44,7 +43,7 @@ class Login extends StatelessWidget with ChangeNotifier {
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(25),
                             topRight: Radius.circular(25))),
-                    height: deviceSize.height * .40,
+                    height: deviceSizePortrait.height * .40,
                     child: Column(
                       children: [
                         const Spacer(),
@@ -60,7 +59,7 @@ class Login extends StatelessWidget with ChangeNotifier {
                             controller: passwordController),
                         const Expanded(child: SizedBox()),
                         SizedBox(
-                          width: deviceSize.width * .5,
+                          width: deviceSizePortrait.width * .5,
                           child: Consumer<LoadingProvider>(
                             builder: (context, value, child) =>
                                 ElevatedButton.icon(
@@ -105,7 +104,7 @@ class Login extends StatelessWidget with ChangeNotifier {
                                               .showSnackBar(const SnackBar(
                                                   backgroundColor: kRed,
                                                   content: Text(
-                                                    'No account exist! please try again',
+                                                    'No account exist! please try again', 
                                                   )));
                                         }
                                       }
@@ -134,8 +133,8 @@ class Login extends StatelessWidget with ChangeNotifier {
                     visible: value.loading,
                     child: Container(
                         color: deviceDarkThemeFlag ? kBlack : kWhite,
-                        height: deviceSize.height,
-                        width: deviceSize.width,
+                        height: deviceSizePortrait.height,
+                        width: deviceSizePortrait.width,
                         child: const Loading()),
                   );
                 },

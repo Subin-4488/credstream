@@ -84,13 +84,13 @@ class Section2 extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         SizedBox(
-          height: deviceSize.width * .75,
-          width: deviceSize.width,
+          height: deviceSizePortrait.width * .75,
+          width: deviceSizePortrait.width,
           child: Stack(
             alignment: Alignment.center,
             children: [
               CircleAvatar(
-                  backgroundColor: circleKColor, radius: deviceSize.width * .32),
+                  backgroundColor: circleKColor, radius: deviceSizePortrait.width * .32),
               CustomImage(
                 img: images[0],
                 angle: -18 * pi / 180,
@@ -128,7 +128,7 @@ class Section3 extends StatelessWidget {
             child:
                 ElevatedButton(onPressed: () {}, child: const Text('Set Up'))),
         SizedBox(
-            width: deviceSize.width * .8,
+            width: deviceSizePortrait.width * .8,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: kWhite, foregroundColor: kBlack),
@@ -157,8 +157,8 @@ class CustomImage extends StatelessWidget {
       angle: angle,
       child: Container(
           margin: edgeInsets,
-          height: deviceSize.height * .25,
-          width: deviceSize.width * .35,
+          height: deviceSizePortrait.height * .25,
+          width: deviceSizePortrait.width * .35,
           decoration: BoxDecoration(
               borderRadius: borderRadius,
               image: DecorationImage(

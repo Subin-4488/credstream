@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:math';
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
-import 'package:credstream/core/values.dart';
 import 'package:credstream/domain/localDB/localdb_crud.dart';
 import 'package:credstream/models/video.dart';
 import 'package:credstream/player/landscape_player.dart';
@@ -12,7 +10,6 @@ import 'package:credstream/screens/screen_widgets/loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 
 class VideoPlayer extends StatefulWidget {
   final Video videomodel;
@@ -33,103 +30,65 @@ class _VideoPlayerState extends State<VideoPlayer> {
     super.dispose();
   }
 
-  Future<void> setDefault() async {
-    await SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
-  }
-
   @override
   void initState() {
-    setDefault();
     _watermark = LocalDBCrud.currentUser().credentialWatermark;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( 
       body: SafeArea(
-        child: Center(
-          child: Stack(
-            children: [
+        child: SizedBox(
+          height: deviceSizePortrait.height, 
+          width: deviceSizePortrait.width,
+          child: Stack( 
+            children: [ 
               SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Stack(children: [
-                      // AspectRatio(
-                      //   aspectRatio: 16 / 9,
-                      //   child: VlcPlayer(
-                      //     controller: _controller,
-                      //     aspectRatio: _controller.value.aspectRatio,
-                      //     placeholder: const Center(child: Loading()),
-                      //   ),
-                      // ),
-                      videoOverlay(),
-                    ]),
+                    kHeight20,
+                    videoOverlay(),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(left: 15.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           kHeight20,
                           Text(
-                            widget.videomodel.name,
-                            style: Theme.of(context).textTheme.displayLarge,
+                            widget.videomodel.name.toUpperCase(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayLarge!
+                                .copyWith(color: kBlue),
                           ),
-                          kHeight,
+                          kHeight5,
                           Text(
-                            widget.videomodel.year.toString(),
+                            "${widget.videomodel.ownership}: ${widget.videomodel.year.toString()}",
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           kHeight,
                           SizedBox(
                             height: 45,
-                            width: deviceSize.width,
                             child: Card(
-                              color: kBlue,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(7.0),
-                                              child: Text(
-                                                widget.videomodel.genre,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyLarge,
-                                              ),
-                                            )),
-                            ),
-                            // child: ListView(
-                            //     scrollDirection: Axis.horizontal,
-                            //     children: widget.videomodel.genre
-                            //         .map(
-                            //           (e) => SizedBox(
-                            //             width: 160,
-                            //             child: Card(
-                            //                 color: kBlue,
-                            //                 child: Padding(
-                            //                   padding:
-                            //                       const EdgeInsets.all(7.0),
-                            //                   child: Text(
-                            //                     e,
-                            //                     style: Theme.of(context)
-                            //                         .textTheme
-                            //                         .bodyLarge,
-                            //                   ),
-                            //                 )),
-                            //           ),
-                            //         )
-                            //         .toList()),
-                          // ),
-                          kHeight,
+                                color: kGreen, 
+                                child: Padding(
+                                  padding: const EdgeInsets.all(7.0),
+                                  child: Text(
+                                    widget.videomodel.genre,
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                )),
+                          ),
+                          kHeight5, 
                           Text(
                             widget.videomodel.description,
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
-                        ],
+                        ], 
                       ),
                     )
                   ],
@@ -139,8 +98,8 @@ class _VideoPlayerState extends State<VideoPlayer> {
                   visible: _loading,
                   child: Container(
                       color: deviceDarkThemeFlag ? kBlack : kWhite,
-                      height: deviceSize.height,
-                      width: deviceSize.width,
+                      height: deviceSizePortrait.height,
+                      width: deviceSizePortrait.width,
                       child: const Loading()))
             ],
           ),
@@ -162,7 +121,8 @@ class _VideoPlayerState extends State<VideoPlayer> {
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: CachedNetworkImageProvider(widget.videomodel.image),
+                        image:
+                            CachedNetworkImageProvider(widget.videomodel.image),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -187,7 +147,6 @@ class _VideoPlayerState extends State<VideoPlayer> {
                 setState(() {
                   _loading = false;
                 });
-                await setDefault();
               },
             )
           ],

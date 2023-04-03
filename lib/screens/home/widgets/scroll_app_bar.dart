@@ -19,7 +19,7 @@ class ScrollAppBar extends StatelessWidget {
                   ? kFloatingContainerDark
                   : kFloatingContainerLight,
               borderRadius: const BorderRadius.all(Radius.circular(5))),
-          width: deviceSize.width,
+          width: deviceSizePortrait.width,
           alignment: Alignment.center,
           height: animatedContainerheight,
           curve: Curves.fastOutSlowIn,

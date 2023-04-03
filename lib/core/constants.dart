@@ -29,7 +29,8 @@ final borderRadius = BorderRadius.circular(10);
 const mainImage =
     'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg';
 
-late Size deviceSize;
+late Size deviceSizePortrait;
+late Size deviceSizeLandscape;
 late bool deviceDarkThemeFlag;
 
-const List<String> genres = ['Test', 'Demo', 'Game']; 
+const List<String> genres = ['Test', 'Demo', 'Game'];

@@ -13,12 +13,6 @@ class VideoApi {
         map.addAll({genres[i]: Video.fromJson(response.body)});
       }
     }
-    map.forEach((key, value) {
-      print("$key: ");
-      value.forEach((element) {
-        print(element.name);
-      });
-    });
     return map;
   }
 }

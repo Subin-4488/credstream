@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/core/constants.dart';
-import 'package:credstream/screens/downloads/screen_downloads.dart';
 
 class MainCard extends StatelessWidget {
   final String image;
@@ -12,8 +11,8 @@ class MainCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6.0),
       child: Container(
-        height: deviceSize.height * .28,
-        width: deviceSize.width * .40,
+        height: deviceSizePortrait.height * .28,
+        width: deviceSizePortrait.width * .40,
         decoration: BoxDecoration(
             borderRadius: borderRadius,
             image: DecorationImage(

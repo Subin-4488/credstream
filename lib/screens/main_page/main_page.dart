@@ -22,7 +22,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    deviceSize = MediaQuery.of(context).size;
+    deviceSizePortrait = MediaQuery.of(context).size;
     deviceDarkThemeFlag =
         MediaQuery.of(context).platformBrightness == Brightness.dark
             ? true 
@@ -42,8 +42,8 @@ class MainPage extends StatelessWidget {
                   visible: value.loading,
                   child: Container(
                       color: deviceDarkThemeFlag ? kBlack : kWhite,
-                      height: deviceSize.height,
-                      width: deviceSize.width,
+                      height: deviceSizePortrait.height,
+                      width: deviceSizePortrait.width,
                       child: const Loading()),
                 );
               },

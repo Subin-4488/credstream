@@ -1,3 +1,4 @@
+import 'package:credstream/core/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/core/constants.dart';
 import 'package:credstream/screens/downloads/screen_downloads.dart';
@@ -12,7 +13,7 @@ class SearchResults extends StatelessWidget {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const [
-        MainTitle(title: 'Movies & TV'),
+        MainTitle(title: 'Movies & TV', color: kBlack),
         kHeight,
         Expanded(child: ResultsWidget())
       ],

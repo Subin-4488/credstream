@@ -14,7 +14,7 @@ class SearchIdle extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
-          MainTitle(title: 'Top Searches'),
+          MainTitle(title: 'Top Searches', color: kBlack,),
           kHeight,
           Expanded(child: SearchItems())
         ],
@@ -35,8 +35,8 @@ class SearchItems extends StatelessWidget {
           return Row(
             children: [
               Container(
-                height: deviceSize.height * .1,
-                width: deviceSize.width * .38,
+                height: deviceSizePortrait.height * .1,
+                width: deviceSizePortrait.width * .38,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(images[0]), fit: BoxFit.cover)),
