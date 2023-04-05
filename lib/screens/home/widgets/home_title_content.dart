@@ -1,7 +1,7 @@
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/models/video.dart';
 import 'package:credstream/player/player.dart';
-import 'package:credstream/provider/loadingProvider.dart';
+import 'package:credstream/provider/loading_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/core/constants.dart';
 import 'package:credstream/screens/home/widgets/main_card.dart';

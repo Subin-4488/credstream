@@ -50,7 +50,7 @@ class DobTextField extends StatelessWidget with ChangeNotifier {
   }
 }
 
-class FormTextFormField extends StatelessWidget {
+class FormTextFormField extends StatelessWidget with ChangeNotifier {
   final String hint;
   final IconData icon;
   final int index;

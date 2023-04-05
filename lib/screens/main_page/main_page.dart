@@ -1,6 +1,6 @@
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
-import 'package:credstream/provider/loadingProvider.dart';
+import 'package:credstream/provider/loading_provider.dart';
 import 'package:credstream/screens/screen_widgets/loading.dart';
 import 'package:credstream/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
   final _pages = [
-    const ScreenHome(),
+    ScreenHome(),
     const ScreenSearch(),
     const ScreenDownloads(),
     const Settings()

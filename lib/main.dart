@@ -1,7 +1,7 @@
 
 import 'package:credstream/core/apptheme.dart';
 import 'package:credstream/domain/localDB/localdb.dart';
-import 'package:credstream/provider/loadingProvider.dart';
+import 'package:credstream/provider/loading_provider.dart';
 import 'package:credstream/screens/auth/login.dart';
 import 'package:credstream/screens/auth/signup.dart';
 import 'package:credstream/screens/auth/widgets/main_auth.dart';

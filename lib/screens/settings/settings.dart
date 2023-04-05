@@ -2,7 +2,7 @@ import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
 import 'package:credstream/domain/localDB/localdb_crud.dart';
 import 'package:credstream/screens/screen_widgets/main_title.dart';
-import 'package:credstream/screens/settings/widgets/settingsTileItem.dart';
+import 'package:credstream/screens/settings/widgets/settings_tile_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

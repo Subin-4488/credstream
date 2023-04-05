@@ -9,7 +9,6 @@ import 'package:credstream/player/landscape_player.dart';
 import 'package:credstream/screens/screen_widgets/loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class VideoPlayer extends StatefulWidget {
   final Video videomodel;

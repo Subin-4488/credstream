@@ -9,8 +9,8 @@ import 'package:credstream/screens/home/widgets/scroll_app_bar.dart';
 final ValueNotifier<bool> hometitleNotifier = ValueNotifier(true);
 double animatedContainerheight = -1;
 
-class ScreenHome extends StatelessWidget {
-  const ScreenHome({super.key});
+class ScreenHome extends StatelessWidget with ChangeNotifier{
+  ScreenHome({super.key});
 
   @override
   Widget build(BuildContext context) {

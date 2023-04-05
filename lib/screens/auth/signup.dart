@@ -1,10 +1,8 @@
 import 'package:credstream/core/colors.dart';
 import 'package:credstream/core/constants.dart';
-import 'package:credstream/domain/localDB/localdb.dart';
-import 'package:credstream/domain/localDB/localdb_crud.dart';
 import 'package:credstream/domain/user/user_api.dart';
 import 'package:credstream/models/user.dart';
-import 'package:credstream/provider/loadingProvider.dart';
+import 'package:credstream/provider/loading_provider.dart';
 import 'package:credstream/screens/auth/widgets/form_widget.dart';
 import 'package:credstream/screens/screen_widgets/loading.dart';
 import 'package:flutter/material.dart';

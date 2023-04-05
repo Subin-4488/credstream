@@ -5,7 +5,7 @@ import 'package:credstream/domain/localDB/localdb_crud.dart';
 import 'package:credstream/domain/user/user_api.dart';
 import 'package:credstream/models/credential.dart';
 import 'package:credstream/models/user.dart';
-import 'package:credstream/provider/loadingProvider.dart';
+import 'package:credstream/provider/loading_provider.dart';
 import 'package:credstream/screens/auth/widgets/form_widget.dart';
 import 'package:credstream/screens/screen_widgets/loading.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +14,7 @@ import 'package:provider/provider.dart';
 class Login extends StatelessWidget with ChangeNotifier {
   Login({super.key});
   final formkey = GlobalKey<FormState>();
-
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
 
   @override

@@ -95,7 +95,7 @@ flutter:
       fonts:
         - asset: asset/fonts/Nunito-VariableFont_wght.ttf
     - family: ShantellSans
-      fonts:
+      fonts: 
         - asset: asset/fonts/ShantellSans-VariableFont_BNCE,INFM,SPAC,wght.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700

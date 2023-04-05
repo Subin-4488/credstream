@@ -24,7 +24,7 @@ class Video {
   static List<Video> fromJson(String data) {
     List<Video> ret = [];
     List<dynamic> list = jsonDecode(data);
-    list.forEach((e) {
+    for (var e in list) {
       ret.add(Video(
           link: "$baseUrl/static/videos/${e['title']}.m3u8",
           genre: e['genre'],
@@ -33,7 +33,7 @@ class Video {
           name: e['title'],
           description: e['bio'],
           ownership: e['ownership']));
-    });
+    }
     return ret;
   }
 }

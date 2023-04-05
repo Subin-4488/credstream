@@ -102,7 +102,7 @@ class PlayButton extends StatelessWidget {
           return VideoPlayer(
             videomodel: Video(
               ownership: 'Ubisoft',
-                link: "$baseUrl/static/videos/hope.m3u8",
+                link: "$baseUrl/output/stream.m3u8", 
                 genre: 'Action',
                 year: 2022,
                 image: mainImage,
