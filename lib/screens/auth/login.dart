@@ -63,7 +63,6 @@ class Login extends StatelessWidget with ChangeNotifier {
                                 ElevatedButton.icon(
                                     onPressed: () async {
                                       if (formkey.currentState!.validate()) {
-                                        
                                         value.startLoading();
                                         User user = User(
                                             email: emailController.text.trim(),
@@ -73,12 +72,7 @@ class Login extends StatelessWidget with ChangeNotifier {
                                         Credential? credential =
                                             await UserApi.loginUser(user);
 
-                                        value.stopLoading();
-
-                                        if (context.mounted &&
-                                            credential != null) {
-                                          await Toast.show(
-                                              context, "Login success");
+                                        if (credential != null) {
                                           LocalDBUser userSave = LocalDBUser(
                                               email:
                                                   emailController.text.trim(),
@@ -92,18 +86,26 @@ class Login extends StatelessWidget with ChangeNotifier {
                                                   userSave);
 
                                           if (context.mounted) {
+                                            value.stopLoading();
                                             await Navigator.of(context)
                                                 .pushNamedAndRemoveUntil(
                                                     'mainPage',
                                                     (route) => false);
+                                            if (context.mounted) {
+                                              await Toast.show(
+                                                  context, "Login success");
+                                            }
                                           }
                                         } else if (credential == null) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(const SnackBar(
-                                                  backgroundColor: kRed,
-                                                  content: Text(
-                                                    'No account exist! please try again', 
-                                                  )));
+                                          value.stopLoading();
+                                          if (context.mounted) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(const SnackBar(
+                                                    backgroundColor: kRed,
+                                                    content: Text(
+                                                      'No account exist! please try again',
+                                                    )));
+                                          }
                                         }
                                       }
                                     },

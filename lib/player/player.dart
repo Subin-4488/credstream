@@ -25,7 +25,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
   _VideoPlayerState();
 
   @override
-  void dispose() async {
+  void dispose() { 
     super.dispose();
   }
 
@@ -43,6 +43,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
           height: deviceSizePortrait.height, 
           width: deviceSizePortrait.width,
           child: Stack( 
+            fit: StackFit.expand,
             children: [ 
               SingleChildScrollView(
                 child: Column(
