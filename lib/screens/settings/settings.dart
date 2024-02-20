@@ -17,7 +17,7 @@ class Settings extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const MainTitle(title: "Settings", color: kBlack,),
+          MainTitle(title: "Settings",),
           kHeight,
           Container(
             width: deviceSizePortrait.width,
@@ -67,7 +67,7 @@ class Settings extends StatelessWidget {
             iconData: Icons.info_outline_rounded,
           ),
           kHeight40,
-          const MainTitle(title: "Account", color: kBlack,),
+           MainTitle(title: "Account", ),
           kHeight5,
           SettingsTileItem(
             title: "Sign Out",

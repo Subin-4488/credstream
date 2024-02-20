@@ -10,6 +10,7 @@ class ScrollAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('reb');
     return ValueListenableBuilder(
       valueListenable: hometitleNotifier,
       builder: (context, value, child) {
@@ -34,8 +35,10 @@ class ScrollAppBar extends StatelessWidget {
                         : 'asset/images/logo/CredStream-logos_white1.png'),
                     Text(
                       'CredStream',
-                      style: Theme.of(context).textTheme.displayLarge!.copyWith(
-              color: kBlue, fontSize: 20),
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayLarge!
+                          .copyWith(color: kBlue, fontSize: 20),
                     ),
                     const Spacer(),
                     const Icon(Icons.cast),
@@ -76,8 +79,10 @@ class TItleTextButtons extends StatelessWidget {
         onPressed: (() {}),
         child: Text(
           text,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color:deviceDarkThemeFlag ? kWhite : kBlack), 
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(color: deviceDarkThemeFlag ? kWhite : kBlack),
         ));
   }
 }

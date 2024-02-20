@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:credstream/core/values.dart';
+import 'package:credstream/domain/localDB/localdb_crud.dart';
 
 class Video {
   final String image;
@@ -26,7 +27,9 @@ class Video {
     List<dynamic> list = jsonDecode(data);
     for (var e in list) {
       ret.add(Video(
-          link: "$baseUrl/static/videos/${e['title']}.m3u8",
+          // link: "$baseUrl/static/videos/${e['title']}.m3u8",
+          link:
+              "$baseUrl/${LocalDBCrud.currentUser().credentialWatermark}/${e['title']}.m3u8",
           genre: e['genre'],
           year: e['release_year'],
           image: "$baseUrl/thumbnail/${e['title']}.jpg",

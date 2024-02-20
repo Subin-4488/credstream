@@ -1,19 +1,26 @@
-
 import 'package:credstream/core/apptheme.dart';
+import 'package:credstream/core/constants.dart';
+import 'package:credstream/core/values.dart';
 import 'package:credstream/domain/localDB/localdb.dart';
 import 'package:credstream/provider/loading_provider.dart';
+import 'package:credstream/provider/server_status_provider.dart';
 import 'package:credstream/screens/auth/login.dart';
 import 'package:credstream/screens/auth/signup.dart';
 import 'package:credstream/screens/auth/widgets/main_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:credstream/screens/main_page/main_page.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
+import 'package:web_socket_channel/web_socket_channel.dart';
+
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
   runApp(const Main());
-} 
+}
 
 class Main extends StatefulWidget {
   const Main({super.key});
@@ -29,11 +36,12 @@ class _MainState extends State<Main> {
   @override
   void dispose() {
     super.dispose();
-  } 
+  }
 
-  void load() async { 
+  void load() async {
     await SystemChannels.textInput.invokeMethod('TextInput.hide');
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    await SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: SystemUiOverlay.values);
     await Hive.initFlutter();
@@ -71,11 +79,16 @@ class _MainState extends State<Main> {
           )
         : MultiProvider(
             providers: [
-              ChangeNotifierProvider(
-                create: (context) => LoadingProvider(),
-              ), 
-            ],
-            child: MaterialApp(
+                ChangeNotifierProvider(
+                  create: (context) => LoadingProvider(),
+                ),
+                // ChangeNotifierProvider(create: (context) => ServerStatusService())
+              ],
+            child:
+                // Consumer<ServerStatusService>(builder: (context, value, child) {
+                // if (value.serverStatus == true) {
+                // return
+                MaterialApp(
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
               debugShowCheckedModeBanner: false,
@@ -86,7 +99,13 @@ class _MainState extends State<Main> {
                 "signup": (context) => Signup(),
               },
               initialRoute: _home ? "mainPage" : "main_auth",
-            ),
-          );
+            )
+            // ;
+            // } else {
+            //   return const Material(
+            //       child: Center(child: CircularProgressIndicator()));
+            // }
+            // }),
+            );
   }
 }

@@ -1,13 +1,14 @@
+import 'package:credstream/core/colors.dart';
+import 'package:credstream/core/constants.dart';
 import 'package:flutter/material.dart';
 
 class MainTitle extends StatelessWidget {
-  final Color color;
   final String title;
-  const MainTitle({super.key, required this.title, required this.color});
+  MainTitle({super.key, required this.title});
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Text(title, style: Theme.of(context).textTheme
-    .displayLarge!.copyWith(color: color, fontWeight: FontWeight.bold));
+    .displayLarge!.copyWith(fontWeight: FontWeight.bold));
   }
 }

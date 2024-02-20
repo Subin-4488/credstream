@@ -48,7 +48,7 @@ class Item extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 15.0, right: 15, top: 5),
-            child: MainTitle(title: title.trim().toUpperCase(), color: kBlack,), 
+            child: MainTitle(title: title.trim().toUpperCase(),), 
           ),
           kHeight5,
           LimitedBox( 

@@ -25,7 +25,7 @@ class MainPage extends StatelessWidget {
     deviceSizePortrait = MediaQuery.of(context).size;
     deviceDarkThemeFlag =
         MediaQuery.of(context).platformBrightness == Brightness.dark
-            ? true 
+            ? true
             : false;
     return Scaffold(
       body: SafeArea(

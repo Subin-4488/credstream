@@ -25,7 +25,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
   _VideoPlayerState();
 
   @override
-  void dispose() { 
+  void dispose() {
     super.dispose();
   }
 
@@ -37,14 +37,14 @@ class _VideoPlayerState extends State<VideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
       body: SafeArea(
         child: SizedBox(
-          height: deviceSizePortrait.height, 
+          height: deviceSizePortrait.height,
           width: deviceSizePortrait.width,
-          child: Stack( 
+          child: Stack(
             fit: StackFit.expand,
-            children: [ 
+            children: [
               SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +73,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
                           SizedBox(
                             height: 45,
                             child: Card(
-                                color: kGreen, 
+                                color: kGreen,
                                 child: Padding(
                                   padding: const EdgeInsets.all(7.0),
                                   child: Text(
@@ -83,12 +83,12 @@ class _VideoPlayerState extends State<VideoPlayer> {
                                   ),
                                 )),
                           ),
-                          kHeight5, 
+                          kHeight5,
                           Text(
                             widget.videomodel.description,
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
-                        ], 
+                        ],
                       ),
                     )
                   ],

@@ -12,10 +12,10 @@ class SearchResults extends StatelessWidget {
     return Expanded(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        MainTitle(title: 'Movies & TV', color: kBlack),
+      children:  [
+        MainTitle(title: 'Movies & TV', ),
         kHeight,
-        Expanded(child: ResultsWidget())
+        const Expanded(child: ResultsWidget())
       ],
     ));
   }

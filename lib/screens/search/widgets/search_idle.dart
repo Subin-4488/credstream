@@ -13,10 +13,10 @@ class SearchIdle extends StatelessWidget {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          MainTitle(title: 'Top Searches', color: kBlack,),
+        children:  [
+          MainTitle(title: 'Top Searches'),
           kHeight,
-          Expanded(child: SearchItems())
+          const Expanded(child: SearchItems())
         ],
       ),
     );

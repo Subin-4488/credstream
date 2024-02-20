@@ -236,7 +236,7 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
               body: WillPopScope(
                 onWillPop: () async {
                   await setPortrait();
-                  return false;
+                  return true; 
                 },
                 child: Stack(
                   fit: StackFit.expand,
@@ -248,7 +248,7 @@ class _LandScapePlayerState extends State<LandScapePlayer> {
                         top: top,
                         left: left,
                         child: Container(
-                          color: kRed,
+                          color: kTransparent,
                           height: 30,
                           width: 60,
                           alignment: Alignment.center,

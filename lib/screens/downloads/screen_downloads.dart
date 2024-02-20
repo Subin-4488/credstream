@@ -16,6 +16,7 @@ class ScreenDownloads extends StatelessWidget {
   const ScreenDownloads({super.key});
   @override
   Widget build(BuildContext context) {
+    print('Rebuilded downloads');
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Column(
@@ -51,7 +52,7 @@ class Section1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children:  [
+      children: [
         const Icon(Icons.settings),
         kWidth,
         Text(
@@ -90,7 +91,8 @@ class Section2 extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               CircleAvatar(
-                  backgroundColor: circleKColor, radius: deviceSizePortrait.width * .32),
+                  backgroundColor: circleKColor,
+                  radius: deviceSizePortrait.width * .32),
               CustomImage(
                 img: images[0],
                 angle: -18 * pi / 180,
